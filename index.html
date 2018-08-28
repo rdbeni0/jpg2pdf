@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- zaladowanie jQuery i ajaxa  -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- dropzone zaladowanie bibliotek  -->
+
+<script src="./libs/dropzone.js"></script>
+<link rel="stylesheet" type="text/css" href="./libs/dropzone.css">
+
+<!-- konfguracja dropzone  -->
+
+<script>
+Dropzone.options.myDropzone = {
+    init: function() {
+        thisDropzone = this;
+       
+$.get('upload.php', function(data) {
+$.each(data, function(key,value){
+var mockFile = { name: value.name, size: value.size };
+thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "uploads/"+value.name);
+            });       
+        });
+    }
+};
+</script></head>
+
+<body>
+
+<h1>Generate PDF album :</h1>
+
+
+<form action="upload.php" class="dropzone" id="my-dropzone"></form>
+<table>
+  <tr>
+	<td> <input type="submit" id="submit"  value=">CREATE & OPEN<"></td> 
+    <td> : convert images (jpg, png) to PDF</td>
+	<!-- onClick="wartpscNazwaFunkcji"  -->
+  </tr>
+  <tr><td><input type="submit" id="submit2"  value=">CLEAN<"></td><td> : clean files and start again</td></tr>
+</table>
+
+
+<script>
+	document.getElementById("submit").addEventListener("click", function(){
+ 		
+		$.ajax({
+                    type: "POST",
+                    url: './genpdf.php',
+                    success: function(data)
+                    {
+                         console.log('Pliki zostaly wygenerowane!');
+                         window.location = './tmp/test.pdf';
+                    }
+                });
+             
+        });
+	
+	
+	
+	
+document.getElementById("submit2").addEventListener("click", function(){
+ 		
+		$.ajax({
+                    type: "POST",
+                    url: './clean.php',
+                    success: function(data)
+                    {
+                         	console.log('Usunieto');
+				window.location = './'
+                    }
+                });
+             
+        });
+</script>
+
+
+
+
+</body>
+</html>
+
