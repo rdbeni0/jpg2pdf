@@ -1,15 +1,12 @@
 # jpg2pdf
 
 * technology: PHP, ajax, jQuery  
-* real presentation:
-[http://collector1871.uk.to/projekty/jpg2pdf/][1]
 * source code:
-[https://github.com/collector1871/jpg2pdf][2]   
+[https://github.com/collector1871/jpg2pdf][1]   
 
 This simple app is converting multiple image files (jpg, png) to a single PDF file. 
 
-[1]: http://collector1871.uk.to/projekty/jpg2pdf/
-[2]: https://github.com/collector1871/jpg2pdf
+[1]: https://github.com/collector1871/jpg2pdf
 
 ## Screenshots:
 
